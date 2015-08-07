@@ -58,7 +58,7 @@ public class City implements Parcelable {
         dest.writeString(image);
     }
 
-    public final Parcelable.Creator<City> CREATOR = new Creator<City>() {
+    public final static Parcelable.Creator<City> CREATOR = new Creator<City>() {
         @Override
         public City createFromParcel(Parcel source) {
             return new City(source);
