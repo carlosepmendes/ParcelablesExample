@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class DetailActivityFragment extends Fragment {
 
+    static final String DETAIL = "DETAIL";
     private ArrayList<City> myList;
     int i=1;
     public DetailActivityFragment() {
@@ -26,17 +27,23 @@ public class DetailActivityFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = getActivity().getIntent();
-        Bundle extras = intent.getExtras();
-
-        myList = extras.getParcelableArrayList("cities");
-        i = extras.getInt("position");
+//        Intent intent = getActivity().getIntent();
+//        Bundle extras = intent.getExtras();
+//
+//        myList = extras.getParcelableArrayList("cities");
+//        i = extras.getInt("position");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_detail, container, false);
+
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            myList = arguments.getParcelableArrayList(DetailActivityFragment.DETAIL);
+            i = arguments.getInt("position");
+        }
 
         TextView text = (TextView) rootView.findViewById(R.id.textView);
         text.setText(myList.get(i).name);

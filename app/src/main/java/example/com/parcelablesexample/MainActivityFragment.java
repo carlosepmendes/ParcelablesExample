@@ -1,6 +1,7 @@
 package example.com.parcelablesexample;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -61,13 +62,12 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
                 Bundle extras = new Bundle();
                 extras.putParcelableArrayList("cities", cityArrayList);
                 extras.putInt("position", i);
-                intent.putExtras(extras);
 
-                startActivity(intent);
+                ((Callback)getActivity())
+                        .onItemSelected(extras);
 
             }
         });
@@ -79,6 +79,18 @@ public class MainActivityFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList("cities", cityArrayList);
+    }
+
+    /**
+     * A callback interface that all activities containing this fragment must
+     * implement. This mechanism allows activities to be notified of item
+     * selections.
+     */
+    public interface Callback {
+        /**
+         * DetailFragmentCallback for when an item has been selected.
+         */
+        public void onItemSelected(Bundle extra);
     }
 
 }

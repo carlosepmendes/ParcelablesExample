@@ -1,5 +1,6 @@
 package example.com.parcelablesexample;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,22 @@ public class DetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        if (savedInstanceState == null){
+
+
+            Intent intent = this.getIntent();
+            Bundle arguments = intent.getExtras();
+
+            arguments.getParcelableArrayList("cities");
+            arguments.get("position");
+            DetailActivityFragment fragment = new DetailActivityFragment();
+            fragment.setArguments(arguments);
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.detail_container, fragment)
+                    .commit();
+        }
     }
 
     @Override
