@@ -1,6 +1,5 @@
 package example.com.parcelablesexample;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,14 +15,12 @@ public class DetailActivity extends ActionBarActivity {
 
         if (savedInstanceState == null){
 
+            Bundle extras = new Bundle();
+            extras.putParcelableArrayList(DetailActivityFragment.DETAIL, getIntent().getParcelableArrayListExtra("cities"));
+            extras.putInt(DetailActivityFragment.POS, getIntent().getIntExtra("position", 1));
 
-            Intent intent = this.getIntent();
-            Bundle arguments = intent.getExtras();
-
-            arguments.getParcelableArrayList("cities");
-            arguments.get("position");
             DetailActivityFragment fragment = new DetailActivityFragment();
-            fragment.setArguments(arguments);
+            fragment.setArguments(extras);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.detail_container, fragment)

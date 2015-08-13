@@ -13,7 +13,7 @@
 
     <fragment
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/fragment"
+        android:id="@+id/fragment_main"
         android:name="example.com.parcelablesexample.MainActivityFragment"
         tools:layout="@layout/fragment_main"
         android:layout_width="0dp"

@@ -4,6 +4,7 @@ package example.com.parcelablesexample;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import java.util.ArrayList;
 public class DetailActivityFragment extends Fragment {
 
     static final String DETAIL = "DETAIL";
+    static final String POS = "POS";
+
     private ArrayList<City> myList;
-    int i=1;
+    int i;
     public DetailActivityFragment() {
     }
 
@@ -40,13 +43,16 @@ public class DetailActivityFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_detail, container, false);
 
         Bundle arguments = getArguments();
+
         if (arguments != null) {
+
             myList = arguments.getParcelableArrayList(DetailActivityFragment.DETAIL);
-            i = arguments.getInt("position");
+            i = arguments.getInt(DetailActivityFragment.POS);
         }
 
         TextView text = (TextView) rootView.findViewById(R.id.textView);
         text.setText(myList.get(i).name);
+
         return rootView;
     }
 

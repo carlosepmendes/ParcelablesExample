@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,11 +24,13 @@ public class MainActivity extends ActionBarActivity implements MainActivityFragm
             // The detail container view will be present only in the large-screen layouts
             // (res/layout-sw600dp). If this view is present, then the activity should be
             // in two-pane mode.
+
             mTwoPane = true;
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             if (savedInstanceState == null) {
+
                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.detail_container, new DetailActivityFragment(), DETAILFRAGMENT_TAG)
                                         .commit();
@@ -71,7 +74,6 @@ public class MainActivity extends ActionBarActivity implements MainActivityFragm
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.detail_container, fragment, DETAILFRAGMENT_TAG)
                     .commit();
-
 
         }else {
             Intent intent = new Intent(this, DetailActivity.class);
