@@ -19,11 +19,11 @@ public class MainActivity extends ActionBarActivity implements MainActivityFragm
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         Configuration config = getResources().getConfiguration();
-        if (config.smallestScreenWidthDp >= 500) {
-            setContentView(R.layout.activity_main_tablet);
-        } else {
-            setContentView(R.layout.activity_main_tablet);
-        }
+//        if (config.smallestScreenWidthDp >= 500) {
+            setContentView(R.layout.activity_main);
+//        } else {
+//            setContentView(R.layout.activity_main);
+//        }
 
         if (findViewById(R.id.detail_container) != null) {
             // The detail container view will be present only in the large-screen layouts

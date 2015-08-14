@@ -25,17 +25,6 @@ public class DetailActivityFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-//        Intent intent = getActivity().getIntent();
-//        Bundle extras = intent.getExtras();
-//
-//        myList = extras.getParcelableArrayList("cities");
-//        i = extras.getInt("position");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_detail, container, false);
