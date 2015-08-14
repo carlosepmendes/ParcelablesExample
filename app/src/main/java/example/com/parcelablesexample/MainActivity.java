@@ -1,10 +1,9 @@
 package example.com.parcelablesexample;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,7 +17,13 @@ public class MainActivity extends ActionBarActivity implements MainActivityFragm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+        Configuration config = getResources().getConfiguration();
+        if (config.smallestScreenWidthDp >= 500) {
+            setContentView(R.layout.activity_main_tablet);
+        } else {
+            setContentView(R.layout.activity_main_tablet);
+        }
 
         if (findViewById(R.id.detail_container) != null) {
             // The detail container view will be present only in the large-screen layouts
@@ -68,8 +73,12 @@ public class MainActivity extends ActionBarActivity implements MainActivityFragm
 
         if(mTwoPane){
 
+            Bundle args = new Bundle();
+            args.putParcelableArrayList(DetailActivityFragment.DETAIL,extra.getParcelableArrayList("cities"));
+            args.putInt(DetailActivityFragment.POS, extra.getInt("position"));
+
             DetailActivityFragment fragment = new DetailActivityFragment();
-            fragment.setArguments(extra);
+            fragment.setArguments(args);
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.detail_container, fragment, DETAILFRAGMENT_TAG)

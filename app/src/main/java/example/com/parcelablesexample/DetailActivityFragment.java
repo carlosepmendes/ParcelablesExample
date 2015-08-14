@@ -1,10 +1,8 @@
 package example.com.parcelablesexample;
 
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,12 +44,13 @@ public class DetailActivityFragment extends Fragment {
 
         if (arguments != null) {
 
-            myList = arguments.getParcelableArrayList(DetailActivityFragment.DETAIL);
-            i = arguments.getInt(DetailActivityFragment.POS);
+            myList = arguments.getParcelableArrayList(DETAIL);
+            i = arguments.getInt(POS);
+            TextView text = (TextView) rootView.findViewById(R.id.textView);
+            text.setText(myList.get(i).name);
         }
 
-        TextView text = (TextView) rootView.findViewById(R.id.textView);
-        text.setText(myList.get(i).name);
+
 
         return rootView;
     }
